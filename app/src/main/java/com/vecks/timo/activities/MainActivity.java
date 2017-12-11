@@ -19,4 +19,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, EscolarActivity.class);
         startActivity(intent);
     }
+
+    public void btnPersonal(View view){
+        Intent intent = new Intent(this, PersonalActivity.class);
+        startActivity(intent);
+    }
 }

@@ -41,7 +41,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/main.btn.personal"/>
+            android:text="@string/main.btn.personal"
+            android:onClick="btnPersonal"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -14,4 +14,5 @@
     <string name="rdbutton.muy_importante">Muy importante</string>
     <string name="rdbutton.poco_importante">Poco importante</string>
     <string name="title_activity_registro_activity">RegistroActivityActivity</string>
+    <string name="title_activity_personal">PersonalActivity</string>
 </resources>

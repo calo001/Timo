@@ -1,4 +1,5 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="padding_general">16dp</dimen>
+    <dimen name="margin_horizontal_cardview">5dp</dimen>
 </resources>
