@@ -140,8 +140,10 @@ public class DatabaseHandler extends SQLiteOpenHelper{
         List<Tarea> listaTarea = new ArrayList<>();
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLA_TAREA;
+        String selectQuery = "SELECT  * FROM " + TABLA_TAREA + " WHERE";
         return null;
     }
+
+    // Comentarios de prueba para revisar si too anda ok XD
 
 }
