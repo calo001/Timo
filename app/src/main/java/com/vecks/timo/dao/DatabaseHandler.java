@@ -206,14 +206,38 @@ public class DatabaseHandler extends SQLiteOpenHelper{
                 new String[] { ID_TAREA,
                                NOMBRE_TAREA,
                                FECHA_ENTREGA,
-                        }, KEY_ID + "=?",
+                               ID_CATEGORIA_FK,
+                               ID_MATERIA_FK,
+                               STATUS,
+                               IMPORTANCIA,
+                               DETALLE
+                        }, ID_TAREA + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
-        Contact contact = new Contact(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1), cursor.getString(2));
-        // return contact
-        return contact;
+        Tarea tarea = new Tarea();
+
+        int index;
+
+        index = cursor.getColumnIndexOrThrow(ID_MATERIA);
+        tarea.setId( cursor.getInt(index) );
+
+        index = cursor.getColumnIndexOrThrow(NOMBRE_TAREA);
+        tarea.setNombreTarea( cursor.getString(index) );
+
+        index = cursor.getColumnIndexOrThrow(FECHA_ENTREGA);
+        tarea.setFechaEntrega( DateConverter.stringToDate(cursor.getString(index)) );
+
+        index = cursor.getColumnIndexOrThrow(ID_CATEGORIA_FK);
+        tarea.setIdCategoria( cursor.getInt(index) );
+
+        index = cursor.getColumnIndexOrThrow(ID_MATERIA_FK);
+        tarea.setIdMateria( cursor.getInt(index) );
+
+        index = cursor.getColumnIndexOrThrow(DETALLE);
+        tarea.setDetalle( cursor.getString(index) );
+
+        return tarea;
     }
 }
