@@ -12,9 +12,9 @@ public class Tarea {
     private Date fechaEntrega;
     private int idAsignatura;
     private int idCategoria;
-    private int estado;
-    private int importancia;
-    private String detalle;
+    private int estado; // 1: Hecho, 0: No hecho
+    private int importancia; // 1,2,3 1 la menor, 3 la mayor
+    private String detalle; // Como eran antes los tweets de 140 caracteres maximo
 
     public Tarea() {
     }
