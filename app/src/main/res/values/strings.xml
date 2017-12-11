@@ -5,4 +5,13 @@
     <string name="main.btn.escolar">Escolar</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_escolar">EscolarActivity</string>
+    <string name="title_activity_tarea">TareaActivity</string>
+    <string name="dialog.nombre_tarea">Nombre de la tarea</string>
+    <string name="dialog.descripcion">Descripción</string>
+    <string name="dialog.btn_aceptar">Aceptar</string>
+    <string name="btn.dialog_cancelar">Cancelar</string>
+    <string name="rdbutton.urgente">Urgente</string>
+    <string name="rdbutton.muy_importante">Muy importante</string>
+    <string name="rdbutton.poco_importante">Poco importante</string>
+    <string name="title_activity_registro_activity">RegistroActivityActivity</string>
 </resources>

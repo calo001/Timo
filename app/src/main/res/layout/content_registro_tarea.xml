@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.vecks.timo.activities.RegistroTareaActivity"
+    tools:showIn="@layout/activity_registro_tarea"
+    android:padding="@dimen/padding_general">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/inputNombreTarea"
+                android:layout_width="368dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/dialog.nombre_tarea"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/inputDescripcion"
+                android:layout_width="368dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/dialog.descripcion"
+                android:inputType="textMultiLine"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="62dp" />
+
+        </android.support.design.widget.TextInputLayout>
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="18dp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="138dp"
+            tools:layout_editor_absoluteY="150dp">
+
+            <RadioButton
+                android:id="@+id/radioBtnUrgente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rdbutton.urgente" />
+
+            <RadioButton
+                android:id="@+id/radioBtnMuyImportante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rdbutton.muy_importante" />
+
+            <RadioButton
+                android:id="@+id/radioBtnPocoImportante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rdbutton.poco_importante" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+
+</ScrollView>

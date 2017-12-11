@@ -27,6 +27,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.vecks.timo.activities.MainActivity" />
         </activity>
+        <activity
+            android:name=".activities.TareaActivity"
+            android:label="@string/title_activity_tarea"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.RegistroTareaActivity"
+            android:label="@string/title_activity_registro_activity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
