@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.vecks.timo.models.Categoria;
 import com.vecks.timo.models.Materia;
 import com.vecks.timo.models.Tarea;
+import com.vecks.timo.utils.DateConverter;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -136,14 +137,83 @@ public class DatabaseHandler extends SQLiteOpenHelper{
     }
 
     // Obtener Tareas por Asignatura
-    public List<Tarea> getTareasPoMateria(){
+    public List<Tarea> getTareasPorMateria(int idMateria){
         List<Tarea> listaTarea = new ArrayList<>();
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLA_TAREA + " WHERE";
-        return null;
+        String selectQuery = "SELECT  * FROM " + TABLA_TAREA
+                + " WHERE " + ID_MATERIA + " = " + String.valueOf(idMateria) + ";";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Tarea tareaMateria = new Tarea();
+                int index;
+
+                index = cursor.getColumnIndexOrThrow(ID_MATERIA);
+                tareaMateria.setId( cursor.getInt(index) );
+
+                index = cursor.getColumnIndexOrThrow(NOMBRE_TAREA);
+                tareaMateria.setNombreTarea( cursor.getString(index) );
+
+                index = cursor.getColumnIndexOrThrow(FECHA_ENTREGA);
+                tareaMateria.setFechaEntrega( DateConverter.stringToDate(cursor.getString(index)) );
+
+                index = cursor.getColumnIndexOrThrow(ID_CATEGORIA_FK);
+                tareaMateria.setIdCategoria( cursor.getInt(index) );
+
+                index = cursor.getColumnIndexOrThrow(ID_MATERIA_FK);
+                tareaMateria.setIdMateria( cursor.getInt(index) );
+
+                index = cursor.getColumnIndexOrThrow(DETALLE);
+                tareaMateria.setDetalle( cursor.getString(index) );
+
+                // Adding contact to list
+                listaTarea.add(tareaMateria);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return listaTarea;
     }
 
-    // Comentarios de prueba para revisar si too anda ok XD
+    // Guarda una Tarea en la Base de datos
+    public void addTarea(Tarea nuevaTarea){
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put(NOMBRE_TAREA, nuevaTarea.getNombreTarea());
+        values.put(FECHA_ENTREGA, DateConverter.dateToString(nuevaTarea.getFechaEntrega()) );
+        values.put(ID_CATEGORIA_FK, nuevaTarea.getIdCategoria());
+        values.put(ID_MATERIA_FK, nuevaTarea.getIdMateria());
+        values.put(STATUS, nuevaTarea.getEstado());
+        values.put(IMPORTANCIA, nuevaTarea.getImportancia());
+        values.put(DETALLE, nuevaTarea.getDetalle());
+
+        // Insertando fila
+        db.insert(TABLA_TAREA, null, values);
+        db.close();
+    }
+
+    // Obtener una tarea por su ID
+    public Tarea getTAreaPorId (int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLA_TAREA,
+                new String[] { ID_TAREA,
+                               NOMBRE_TAREA,
+                               FECHA_ENTREGA,
+                        }, KEY_ID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Contact contact = new Contact(Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1), cursor.getString(2));
+        // return contact
+        return contact;
+    }
 }

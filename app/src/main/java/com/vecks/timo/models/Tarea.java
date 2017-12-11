@@ -10,7 +10,7 @@ public class Tarea {
     private int id;
     private String nombreTarea;
     private Date fechaEntrega;
-    private int idAsignatura;
+    private int idMateria;
     private int idCategoria;
     private int estado; // 1: Hecho, 0: No hecho
     private int importancia; // 1,2,3 1 la menor, 3 la mayor
@@ -19,11 +19,11 @@ public class Tarea {
     public Tarea() {
     }
 
-    public Tarea(int id, String nombreTarea, Date fechaEntrega, int idAsignatura, int idCategoria, int estado, int importancia, String detalle) {
+    public Tarea(int id, String nombreTarea, Date fechaEntrega, int idMateria, int idCategoria, int estado, int importancia, String detalle) {
         this.id = id;
         this.nombreTarea = nombreTarea;
         this.fechaEntrega = fechaEntrega;
-        this.idAsignatura = idAsignatura;
+        this.idMateria = idMateria;
         this.idCategoria = idCategoria;
         this.estado = estado;
         this.importancia = importancia;
@@ -54,12 +54,12 @@ public class Tarea {
         this.fechaEntrega = fechaEntrega;
     }
 
-    public int getIdAsignatura() {
-        return idAsignatura;
+    public int getIdMateria() {
+        return idMateria;
     }
 
-    public void setIdAsignatura(int idAsignatura) {
-        this.idAsignatura = idAsignatura;
+    public void setIdMateria(int idMateria) {
+        this.idMateria = idMateria;
     }
 
     public int getIdCategoria() {
