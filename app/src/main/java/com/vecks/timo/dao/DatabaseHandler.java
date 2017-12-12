@@ -11,6 +11,7 @@ import com.vecks.timo.models.Materia;
 import com.vecks.timo.models.Tarea;
 import com.vecks.timo.utils.DateConverter;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -98,7 +99,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
     }
 
     // Obtener uuna lista de todas las Materias
-    public List<Materia> getAllMateria(){
+    public List<Materia> getAllMaterias(){
         List<Materia> listaMaterias = new ArrayList<Materia>();
 
         // Query Select * from materias
@@ -128,7 +129,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 
         // Obtener los valores para el Insert del objeto que representa una nueva materia
         ContentValues values = new ContentValues();
-        values.put(ID_MATERIA, nuevaMateria.getId());
+        //values.put(ID_MATERIA, nuevaMateria.getId());
         values.put(NOMBRE_MATERIA, nuevaMateria.getNombre());
 
         // Inserta fila
@@ -141,8 +142,8 @@ public class DatabaseHandler extends SQLiteOpenHelper{
         List<Tarea> listaTarea = new ArrayList<>();
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLA_TAREA
-                + " WHERE " + ID_MATERIA + " = " + String.valueOf(idMateria) + ";";
+        String selectQuery = "SELECT * FROM " + TABLA_TAREA
+                + " WHERE " + ID_MATERIA_FK + " = " + String.valueOf(idMateria) + ";";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -235,9 +236,38 @@ public class DatabaseHandler extends SQLiteOpenHelper{
         index = cursor.getColumnIndexOrThrow(ID_MATERIA_FK);
         tarea.setIdMateria( cursor.getInt(index) );
 
+        index = cursor.getColumnIndexOrThrow(IMPORTANCIA);
+        tarea.setImportancia( cursor.getInt(index) );
+
         index = cursor.getColumnIndexOrThrow(DETALLE);
         tarea.setDetalle( cursor.getString(index) );
 
         return tarea;
+    }
+
+    // Actualizar tarea por su ID
+    public int actualizaTarea(Tarea nuevaTarea){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(NOMBRE_TAREA, nuevaTarea.getNombreTarea());
+        values.put(FECHA_ENTREGA, DateConverter.dateToString(nuevaTarea.getFechaEntrega()) );
+        values.put(ID_CATEGORIA_FK, nuevaTarea.getIdCategoria());
+        values.put(ID_MATERIA_FK, nuevaTarea.getIdMateria());
+        values.put(STATUS, nuevaTarea.getEstado());
+        values.put(IMPORTANCIA, nuevaTarea.getImportancia());
+        values.put(DETALLE, nuevaTarea.getDetalle());
+
+        // updating row
+        return db.update(TABLA_TAREA   , values, ID_TAREA + " = ?", new String[] { String.valueOf(nuevaTarea.getId()) });
+
+    }
+
+    // Borra Tarea de la BD
+    public void deleteTarea(int idTarea) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLA_TAREA, ID_TAREA + " = ?",
+                new String[] { String.valueOf(idTarea) });
+        db.close();
     }
 }

@@ -30,6 +30,16 @@ public class Tarea {
         this.detalle = detalle;
     }
 
+    public Tarea(String nombreTarea, Date fechaEntrega, int idMateria, int idCategoria, int estado, int importancia, String detalle) {
+        this.nombreTarea = nombreTarea;
+        this.fechaEntrega = fechaEntrega;
+        this.idMateria = idMateria;
+        this.idCategoria = idCategoria;
+        this.estado = estado;
+        this.importancia = importancia;
+        this.detalle = detalle;
+    }
+
     public int getId() {
         return id;
     }
@@ -93,6 +103,4 @@ public class Tarea {
     public void setDetalle(String detalle) {
         this.detalle = detalle;
     }
-
-
 }

@@ -11,12 +11,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
-
 import com.vecks.timo.R;
 import com.vecks.timo.adapters.AdapterCategorias;
+import com.vecks.timo.models.Categoria;
 import com.vecks.timo.models.Materia;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class PersonalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarPersonal);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -49,23 +50,27 @@ public class PersonalActivity extends AppCompatActivity {
 
     private void showDialogNuevaMateria(final View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Agrega una nueva materia");
-
+        builder.setTitle("Title");
+        // I'm using fragment here so I'm using getView() to provide ViewGroup
+        // but you can provide here any other instance of ViewGroup from your Fragment / Activity
+        View viewInflated = LayoutInflater.from(this)
+                            .inflate(R.layout.add_item_dialog,
+                                    (ViewGroup) getWindow().getDecorView().getRootView(),
+                                    false);
         // Set up the input
-        final EditText input = new EditText(this);
+        final EditText input = viewInflated.findViewById(R.id.input);
         // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_NORMAL);
-        builder.setView(input);
+        builder.setView(viewInflated);
 
         // Set up the buttons
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Snackbar.make(view, "OK", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                dialog.dismiss();
+                //m_Text = input.getText().toString();
             }
         });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
@@ -77,25 +82,25 @@ public class PersonalActivity extends AppCompatActivity {
 
     private void setupUI() {
 
-        recyclerView = (RecyclerView) findViewById(R.id.rvCategorias);
+        recyclerView = findViewById(R.id.rvCategorias);
         linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(false);
 
-        adapterCategorias = new AdapterCategorias(this, getListaMaterias());
+        adapterCategorias = new AdapterCategorias(this, getListaCategoria());
         recyclerView.setAdapter(adapterCategorias);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
-    private ArrayList<Materia> getListaMaterias() {
+    private ArrayList<Categoria> getListaCategoria() {
 
-        ArrayList<Materia> lista = new ArrayList<>();
-        lista.add(new Materia(0, "Matematicas"));
-        lista.add(new Materia(1, "Ingles"));
-        lista.add(new Materia(2, "Español"));
-        lista.add(new Materia(3, "Historia"));
-        lista.add(new Materia(4, "Geografia"));
+        ArrayList<Categoria> lista = new ArrayList<>();
+        lista.add(new Categoria(0, "Ejercicio"));
+        lista.add(new Categoria(1, "Compras"));
+        lista.add(new Categoria(2, "Hogar"));
+        lista.add(new Categoria(3, "Familia"));
+        lista.add(new Categoria(4, "Amigos"));
 
         return lista;
     }

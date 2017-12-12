@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.vecks.timo.R;
+import com.vecks.timo.models.Categoria;
 import com.vecks.timo.models.Materia;
 
 import java.util.ArrayList;
@@ -18,11 +19,11 @@ import java.util.ArrayList;
 
 public class AdapterCategorias extends RecyclerView.Adapter<AdapterCategorias.CategoriaViewHolder> {
     private Context context;
-    ArrayList<Materia> materiaList;
+    ArrayList<Categoria> categoriaList;
 
-    public AdapterCategorias(Context context, ArrayList<Materia> materiaList) {
+    public AdapterCategorias(Context context, ArrayList<Categoria> categoriaList) {
         this.context = context;
-        this.materiaList = materiaList;
+        this.categoriaList = categoriaList;
     }
 
     @Override
@@ -34,12 +35,12 @@ public class AdapterCategorias extends RecyclerView.Adapter<AdapterCategorias.Ca
 
     @Override
     public void onBindViewHolder(CategoriaViewHolder holder, int position) {
-        holder.txtCategoria.setText(materiaList.get(position).getNombre());
+        holder.txtCategoria.setText(categoriaList.get(position).getNombre());
     }
 
     @Override
     public int getItemCount() {
-        return materiaList.size();
+        return categoriaList.size();
     }
 
     public static class CategoriaViewHolder extends RecyclerView.ViewHolder {

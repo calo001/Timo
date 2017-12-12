@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Timo</string>
-    <string name="main.bienvenido_a_timo">Bienvenido a Timo</string>
+    <string name="main.bienvenido_a_timo">Bienvenido a TickTock</string>
     <string name="main.btn.personal">Personal</string>
     <string name="main.btn.escolar">Escolar</string>
     <string name="title_activity_main2">Main2Activity</string>
@@ -15,4 +15,6 @@
     <string name="rdbutton.poco_importante">Poco importante</string>
     <string name="title_activity_registro_activity">RegistroActivityActivity</string>
     <string name="title_activity_personal">PersonalActivity</string>
+    <string name="title_activity_modificacion_tarea">ModificacionTareaActivity</string>
+    <string name="menu_eliminar">Eliminar</string>
 </resources>

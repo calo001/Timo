@@ -16,6 +16,10 @@ public class Materia {
         this.nombre = nombre;
     }
 
+    public Materia(String nombre) {
+        this.nombre = nombre;
+    }
+
     public int getId() {
         return id;
     }
