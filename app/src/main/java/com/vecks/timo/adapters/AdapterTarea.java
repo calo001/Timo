@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +55,19 @@ public class AdapterTarea extends RecyclerView.Adapter<AdapterTarea.TareaViewHol
         holder.txtDescripcion.setText( tareasList.get(position).getDetalle() );
         holder.txtFecha.setText( fecha );
         holder.checkBoxHecho.setChecked(checked);
+
+        holder.checkBoxHecho.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked){
+                    onClickTarea.actualizaStatus(tareasList.get(position), 1);
+                } else {
+                    onClickTarea.actualizaStatus(tareasList.get(position), 0);
+                }
+                //notifyDataSetChanged();
+            }
+        });
+
         holder.cardViewTarea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

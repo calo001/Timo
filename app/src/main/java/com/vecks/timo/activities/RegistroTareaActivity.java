@@ -38,6 +38,7 @@ public class RegistroTareaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_tarea);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Registro de actividad");
         setSupportActionBar(toolbar);
 
         inputNombreTarea = findViewById(R.id.inputNombreTarea);

@@ -42,6 +42,7 @@ public class TareaActivity extends AppCompatActivity implements OnClickTarea {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tarea);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Tareas");
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -99,6 +100,15 @@ public class TareaActivity extends AppCompatActivity implements OnClickTarea {
         Intent intent = new Intent(this, ModificacionTareaActivity.class);
         intent.putExtra(ID_TAREA, idTarea);
         startActivity(intent);
+    }
+
+    @Override
+    public void actualizaStatus(Tarea tarea, int status) {
+        tarea.setEstado(status);
+        db.actualizaTarea(tarea);
+        lista = db.getTareasPorMateria(idMateria);
+        adapterTarea.setTareasList(lista);
+        //adapterTarea.notifyDataSetChanged();
     }
 
     @Override

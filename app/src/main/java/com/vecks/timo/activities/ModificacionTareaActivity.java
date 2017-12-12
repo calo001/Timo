@@ -42,6 +42,7 @@ public class ModificacionTareaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modificacion_tarea);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Modificación");
         setSupportActionBar(toolbar);
 
         inputNombreTareaMod = findViewById(R.id.inputNombreTarea);
@@ -166,7 +167,7 @@ public class ModificacionTareaActivity extends AppCompatActivity {
         if (id == R.id.menu_eliminar) {
 
             AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-            builder1.setMessage("¿Esta seguro de borrar la tarea?");
+            builder1.setMessage("¿Está seguro de borrar esta tarea?");
             builder1.setCancelable(true);
 
             builder1.setPositiveButton(

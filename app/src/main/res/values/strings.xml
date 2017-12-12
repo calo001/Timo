@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Timo</string>
+    <string name="app_name">TickTock</string>
     <string name="main.bienvenido_a_timo">Bienvenido a TickTock</string>
     <string name="main.btn.personal">Personal</string>
     <string name="main.btn.escolar">Escolar</string>
